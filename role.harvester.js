@@ -1,14 +1,12 @@
+var rechargeEnergy = require('recharge.energy');
 var roleHarvester = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
-        creep.pos.createConstructionSite(STRUCTURE_ROAD);
+        //creep.pos.createConstructionSite(STRUCTURE_ROAD);
         var sources = creep.room.find(FIND_SOURCES);
         if(creep.carry.energy < creep.carryCapacity) {
-            var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[0], {visualizePathStyle: {stroke: '#ffaa00'}});
-            }
+            rechargeEnergy.run(creep)
         }
         else {
             var targets = creep.room.find(FIND_STRUCTURES, {

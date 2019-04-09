@@ -3,6 +3,7 @@ var roleUpgrader = require('role.upgrader');
 var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repair');
 var replaceCreeps = require('replace.creeps');
+var roleHarvesterToContainer = require('role.harvester.container');
 var roadBuild = require('road.build');
 var Test = require('test');
 var TestCreep = require('test.creep');
@@ -43,14 +44,16 @@ module.exports.loop = function ()
             roleUpgrader.run(creep);
         }
         if (creep.memory.role == 'builder') {
-            roleUpgrader.run(creep);
+            roleBuilder.run(creep);
         }
         if (creep.memory.role == 'repairer') {
             roleRepairer.run(creep);
         }
-        if (!creep.memory.role) {
-            roleBuilder.run(creep);
+        if (creep.memory.role == 'harvesterToContainer') {
+            roleHarvesterToContainer.run(creep);
         }
+
+        
         //TestCreep.run(creep);
         
         

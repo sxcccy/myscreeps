@@ -1,8 +1,10 @@
-﻿var roleRepair = {
+﻿var subRepair = require('sub_repair');
+
+var roleRepair = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
-        creep.pos.createConstructionSite(STRUCTURE_ROAD);
+        //creep.pos.createConstructionSite(STRUCTURE_ROAD);
         if (creep.memory.repairing && creep.carry.energy == 0) {
             creep.memory.canRepair = false;
             creep.say('🔄 harvest');
@@ -11,51 +13,63 @@
             creep.memory.canRepair = true;
             creep.say('🔨 repairing');
         }
+        var targets = creep.room.find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (structure.structureType == STRUCTURE_RAMPART)
+            }
+        });
 
-        if (creep.memory.canRepair) {
-            if (!creep.memory.repairing) {
-                var targets = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_WALL)
-                    }
-                });
-                if (targets.length) {
-                    var num_hits = 0;
-                    for (var name in targets) { num_hits += targets[name].hits; }
-                    var avg_hits = Math.ceil(num_hits / targets.length);
-                    //console.log(num_hits, targets.length, avg_hits);
-                    var lowhits_targets = creep.room.find(FIND_STRUCTURES, {
-                        filter: (structure) => {
-                            return (structure.structureType == STRUCTURE_WALL && structure.hits <= avg_hits && structure.hits < structure.hitsMax)
-                        }
-                    });
-                    creep.memory.repairId = lowhits_targets[0].id;
-                    creep.memory.repairing = true;
-
-                }
-
+        if (targets.length) {
+            var num_hits = 0;
+            for (var name in targets) { num_hits += targets[name].hits; }
+            var avg_hits = Math.ceil(num_hits / targets.length);
+            //console.log(avg_hits / targets[0].hitsMax);
+            if (avg_hits / targets[0].hitsMax < 0.9) {
+                subRepair.run(creep, STRUCTURE_RAMPART);
             }
             else {
-                if (creep.memory.repairId) {
-                    var repaire_targets = Game.getObjectById(creep.memory.repairId);
-                    if (creep.repair(repaire_targets) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(repaire_targets, { visualizePathStyle: { stroke: '#ffffff' } });
+                var container = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_CONTAINER)
                     }
-                }
-                else {
-                    creep.memory.repairing = false;
+                });
+                if (container.length) {
+                    var c_hits = 0;
+                    for (var name in container) { c_hits += container[name].hits; }
+                    var a_hits = Math.ceil(c_hits / container.length);
+
+                    if (a_hits / container[0].hitsMax < 0.9) {
+                        subRepair.run(creep, STRUCTURE_CONTAINER);
+                    }
+                    else {
+                        var road = creep.room.find(FIND_STRUCTURES, {
+                            filter: (structure) => {
+                                return (structure.structureType == STRUCTURE_ROAD)
+                            }
+                        });
+                        if (road.length) {
+                            var rc_hits = 0;
+                            for (var name in container) { rc_hits += road[name].hits; }
+                            var ra_hits = Math.ceil(rc_hits / road.length);
+
+                            if (ra_hits / road[0].hitsMax < 0.9) {
+                                subRepair.run(creep, STRUCTURE_ROAD);
+                            }
+                            else {
+                                if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                                    creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } });
+                                }
+                                else {
+                                    creep.moveTo(25, 11, { visualizePathStyle: { stroke: '#ffaaaa' } })
+                                }
+                            }
+                        }
+                    }
                 }
 
             }
         }
-            
-        else {
-            var sources = creep.room.find(FIND_SOURCES);
-            creep.memory.repairing = false;
-            if (creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[1], { visualizePathStyle: { stroke: '#ffaa00' } });
-            }
-        }
+        
     }
 };
 

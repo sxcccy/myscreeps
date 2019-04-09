@@ -1,8 +1,9 @@
+var rechargeEnergy = require('recharge.energy');
 var roleUpgrader = {
 
     /** @param {Creep} creep **/
     run: function(creep) {
-        creep.pos.createConstructionSite(STRUCTURE_ROAD);
+        //creep.pos.createConstructionSite(STRUCTURE_ROAD);
         if(creep.memory.upgrading && creep.carry.energy == 0) {
             creep.memory.upgrading = false;
             creep.say('🔄 harvest');
@@ -18,10 +19,8 @@ var roleUpgrader = {
             }
         }
         else {
-            var sources = creep.room.find(FIND_SOURCES);
-            if(creep.harvest(sources[1]) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(sources[1], {visualizePathStyle: {stroke: '#ffaa00'}});
-            }
+            rechargeEnergy.run(creep);
+            
         }
     }
 };
