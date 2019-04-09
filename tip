@@ -1,0 +1,15 @@
+TIP OF THE DAY: A good way to save CPU is caching often-used paths
+Use links to save on creep building and CPU.
+Your CPU Limit depends on your Global Control Level.
+Use Room.energyAvailable and Room.energyCapacityAvailable to determine how much energy all the spawns and extensions in the room contain.
+Leaderboards reset to zero each month, while your game process continues.
+The more body parts of one type a creep has, the greater its productivity.
+You can address from your script only those rooms that contain your creeps or structures.
+The creep memory is saved upon death, so clear Memory.creeps.* to prevent overflowing.
+To output an object content into the console, use JSON.stringify.
+To prevent other players from seizing a neutral room you want, use Creep.reserveController.
+Always try to control as many rooms as your GCL allows. It will allow your colony to develop at the maximum speed.
+Spawn extensions do not have to be placed near spawns, their range is the whole room.
+A creep can execute some commands simultaneously in one tick, for example move+build+dropEnergy.
+
+
