@@ -11,5 +11,5 @@ To prevent other players from seizing a neutral room you want, use Creep.reserve
 Always try to control as many rooms as your GCL allows. It will allow your colony to develop at the maximum speed.
 Spawn extensions do not have to be placed near spawns, their range is the whole room.
 A creep can execute some commands simultaneously in one tick, for example move+build+dropEnergy.
-
+To output an object content into the console, use JSON.stringify
 

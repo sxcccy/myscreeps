@@ -2,33 +2,32 @@
 var subRepair = {
 
     run: function (creep, structureName) {
-
+        
         if (creep.memory.canRepair || creep.memory.building) {
+            
             if (!creep.memory.repairing) {
                 var targets = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
-                        return (structure.structureType == structureName)
+                        return (structure.structureType == structureName && structure.hits < structure.hitsMax)
                     }
                 });
                 if (targets.length) {
-                    var num_hits = 0;
-                    for (var name in targets) { num_hits += targets[name].hits; }
-                    var avg_hits = Math.ceil(num_hits / targets.length);
-                    //console.log(num_hits, targets.length, avg_hits);
-                    var lowhits_targets = creep.room.find(FIND_STRUCTURES, {
-                        filter: (structure) => {
-                            return (structure.structureType == structureName && structure.hits <= avg_hits && structure.hits < structure.hitsMax)
-                        }
-                    });
-                    if (targets.length) {
-                        creep.memory.repairId = lowhits_targets[0].id;
-                        creep.memory.repairing = true;
+                    daixiu = new Array();
+                    for (var name in targets) {
+                        daixiu[name] = new Object;
+                        daixiu[name].id = targets[name].id; daixiu[name].hits = targets[name].hits;
+                    }
+                    sortObj(daixiu, 'hits');
+                    //for (var name in daixiu) {console.log(daixiu[name].id, daixiu[name].hits);}
+                    creep.memory.repairId = daixiu[0].id;
+                    console.log('*-*-*-*:',daixiu[0].id, daixiu[0].hits)
+                    creep.memory.repairing = true;
                     }
                     //空闲UPgrade
-                    else {
-                        if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } });
-                        }
+                else {
+                    if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } }, { reusePath: 50 });
+                        
                     }
 
                 }
@@ -37,12 +36,15 @@ var subRepair = {
             else {
                 if (creep.memory.repairId) {
                     var repaire_targets = Game.getObjectById(creep.memory.repairId);
+                    
                     if (repaire_targets.hits < repaire_targets.hitsMax) {
                         if (creep.repair(repaire_targets) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(repaire_targets, { visualizePathStyle: { stroke: '#ffffff' } });
+                            creep.moveTo(repaire_targets, { visualizePathStyle: { stroke: '#ffffff' } }, { reusePath: 50 });
                         }
                     }
-                    else { creep.memory.repairing = false; }
+                    else {
+                        creep.memory.repairing = false;
+                    }
 
                 }
                 else {
@@ -54,9 +56,32 @@ var subRepair = {
 
         else {
             creep.memory.repairing = false;
-            rechargeEnergy.run(creep)
+
+            var targets = creep.room.find(FIND_STRUCTURES, { filter: (structure) => { return structure.structureType == STRUCTURE_STORAGE; } });
+            if (targets.length) {
+                if (targets[0].store[RESOURCE_ENERGY] >= 150) {
+                    if (creep.withdraw(targets[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffaa00' } }, { reusePath: 50 });
+                    }
+                }
+                else { rechargeEnergy.run(creep);}
+
+            }
+
+            else {
+                rechargeEnergy.run(creep);
+            }
         }
     }
 };
+
+function sortObj(array, key) {
+    return array.sort(function (a, b) {
+        var x = a[key];
+        var y = b[key];
+        return x - y;
+        //或者 return x > y ? 1 : (x < y ? -1 : 0);
+    });
+}
 
 module.exports = subRepair;

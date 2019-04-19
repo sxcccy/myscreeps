@@ -1,2 +1,117 @@
-structure.structureType == STRUCTURE_RAMPART && structure.hits < structure.hitsMax||
-                                    
+        aaa = Game.spawns['Main_Base'].room.find(FIND_SOURCES)[0].pos;
+        var bbb = Game.spawns['Main_Base'].pos;
+        console.log(aaa, bbb);
+        let ret = PathFinder.search(aaa, bbb);
+        for (var p in ret) {
+            //console.log(ret[p]);
+        }
+
+
+
+		var targets = creep.room.find(FIND_CONSTRUCTION_SITES, {
+            filter: (structure) => {
+                return (structure.structureType == STRUCTURE_ROAD)
+            }
+        });
+        console.log(targets.length);
+        for (name in targets) {
+            targets[name].remove();
+        }
+
+		if (creep.memory.canRepair || creep.memory.building) {
+            if (!creep.memory.repairing) {
+                var targets = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == structureName)
+                    }
+                });
+                if (targets.length) {
+                    var num_hits = 0;
+                    for (var name in targets) { num_hits += targets[name].hits; }
+                    var avg_hits = Math.ceil(num_hits / targets.length);
+                    //console.log(num_hits, targets.length, avg_hits);
+                    var lowhits_targets = creep.room.find(FIND_STRUCTURES, {
+                        filter: (structure) => {
+                            return (structure.structureType == structureName && structure.hits <= avg_hits && structure.hits < structure.hitsMax)
+                        }
+                    });
+                    if (targets.length) {
+                        creep.memory.repairId = lowhits_targets[0].id;
+                        creep.memory.repairing = true;
+                    }
+                    //¿ÕÏÐUPgrade
+                    else {
+                        if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } });
+                        }
+                    }
+
+                }
+
+            }
+
+
+
+
+var test = {
+
+    /** @param {Creep} creep **/
+    run: function () {
+        targets=Game.spawns['Main_Base'].room.find(FIND_STRUCTURES, {
+            filter: (structure) => {
+                return (structure.structureType == STRUCTURE_WALL && structure.hits < structure.hitsMax)
+            }
+        });
+        if (targets.length > 0) {
+            
+            daixiu = new Array();
+            for (var name in targets) {
+                daixiu[name] = new Object;
+                daixiu[name].id = targets[name].id; daixiu[name].hits = targets[name].hits;
+                
+                console.log(targets[name].id, targets[name].hits);
+            }
+            //console.log(daixiu);
+            sortObj(daixiu, 'hits');
+            console.log('------');
+            for (var name in daixiu ) {
+
+                console.log(daixiu[name].id, daixiu[name].hits);
+            }
+            
+        }
+
+    }
+
+
+};
+
+function sortObj(array, key) {
+    return array.sort(function (a, b) {
+        var x = a[key];
+        var y = b[key];
+        return x - y;
+        //»òÕß return x > y ? 1 : (x < y ? -1 : 0);
+    });
+}
+
+module.exports = test;
+
+
+
+                var road = creep.room.find(FIND_STRUCTURES, {
+                    filter: (structure) => {
+                        return (structure.structureType == STRUCTURE_ROAD)
+                    }
+                });
+                if (road.length) {
+                    var c_hits = 0;
+                    for (var name in road) { c_hits += road[name].hits; }
+                    var a_hits = Math.ceil(c_hits / road.length);
+
+                    if (a_hits / road[0].hitsMax < 0.9) {
+                        subRepair.run(creep, STRUCTURE_ROAD);
+                    }
+                    else {
+
+

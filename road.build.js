@@ -3,24 +3,38 @@ var roadBuild = {
     /** @param {Creep} creep **/
     run: function () {
 
+        Game.rooms.E5S29.createConstructionSite(11, 23, STRUCTURE_WALL);
 
-        var srcpos1 = Game.spawns['Main_Base'].room.find(FIND_SOURCES)[0].pos;
-        var srcpos2 = Game.spawns['Main_Base'].room.find(FIND_SOURCES)[1].pos;
-        var mainBase = Game.spawns['Main_Base'].pos;
-        console.log(srcpos1, srcpos2, mainBase);
-        let ret1 = PathFinder.search(mainBase, srcpos1);
-        
-        let ret2 = PathFinder.search(mainBase, srcpos2);
-        //ret1p = Room.serializePath(ret1);
-        for (var p in ret1) {
-            //var aaa = ret1[p].createConstructionSite(STRUCTURE_ROAD);
-            //var aaa = Game.rooms.E6S29.createConstructionSite(pos, STRUCTURE_ROAD);
-            //console.log(ret1[p]);
-            //console.log(aaa);
-        }
+
 
 
     }
 };
-
+function roadsite(aaa, bbb) {
+    var ret = PathFinder.search(aaa, bbb);
+    for (var p in ret.path) {
+        ret.path[p].createConstructionSite(STRUCTURE_ROAD);
+    }
+    
+}
 module.exports = roadBuild;
+/*
+roadsite(Game.spawns['Main_Base'].room.find(FIND_SOURCES)[0].pos,
+    Game.spawns['Main_Base'].pos)
+roadsite(Game.spawns['Main_Base'].room.find(FIND_SOURCES)[1].pos,
+    Game.spawns['Main_Base'].pos)
+roadsite(Game.spawns['Main_Base'].room.controller.pos,
+    Game.spawns['Main_Base'].pos)
+
+
+roadsite(Game.spawns['Main_Base'].room.find(FIND_STRUCTURES, { filter: (structure) => { return (structure.structureType == STRUCTURE_RAMPART) } })[0].pos,
+    Game.spawns['Main_Base'].pos)
+roadsite(Game.spawns['Main_Base'].room.find(FIND_STRUCTURES, { filter: (structure) => { return (structure.structureType == STRUCTURE_RAMPART) } })[1].pos,
+    Game.spawns['Main_Base'].pos)
+
+
+roadsite(Game.rooms.E5S29.find(FIND_SOURCES)[0].pos,
+    Game.rooms.E5S29.controller.pos)
+roadsite(Game.rooms.E5S29.find(FIND_SOURCES)[0].pos,
+    Game.spawns['Spawn1'].pos)
+*/

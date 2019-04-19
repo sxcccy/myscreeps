@@ -4,9 +4,15 @@ var roleBuilder = require('role.builder');
 var roleRepairer = require('role.repair');
 var replaceCreeps = require('replace.creeps');
 var roleHarvesterToContainer = require('role.harvester.container');
+var monitor = require('monitor');
+var defense = require('defense');
+var roomClaim = require('room.claim');
+var creepAttack = require('creep.attack');
+var creepRepair = require('creep.repair');
 var roadBuild = require('road.build');
 var Test = require('test');
 var TestCreep = require('test.creep');
+var roomE5S29 = require('room.e5s29');
 
 module.exports.loop = function ()
 {
@@ -31,26 +37,38 @@ module.exports.loop = function ()
     }
 
     replaceCreeps.run();
-    //roadBuild.run();
-    //Test.run() 
+    monitor.run();
+    defense.run();
+    roadBuild.run();
+    roomE5S29.run();
+    Test.run() 
 
     for (var name in Game.creeps)
     {
         var creep = Game.creeps[name];
-        if (creep.memory.role == 'harvester') {
-            roleHarvester.run(creep);
-        }
-        if (creep.memory.role == 'upgrader') {
-            roleUpgrader.run(creep);
-        }
-        if (creep.memory.role == 'builder') {
-            roleBuilder.run(creep);
-        }
-        if (creep.memory.role == 'repairer') {
-            roleRepairer.run(creep);
-        }
-        if (creep.memory.role == 'harvesterToContainer') {
-            roleHarvesterToContainer.run(creep);
+        if (creep.room.name = 'E6S29') {
+            if (creep.memory.role == 'harvester' || creep.memory.role == 'harvesterBIG') {
+                roleHarvester.run(creep);
+            }
+            if (creep.memory.role == 'upgrader') {
+                roleUpgrader.run(creep);
+                //creepAttack.run(creep);
+            }
+            if (creep.memory.role == 'builder') {
+                roleBuilder.run(creep);
+                //roomClaim.run(creep);
+            }
+            if (creep.memory.role == 'repairer') {
+                roleRepairer.run(creep);
+                //creepRepair.run(creep);
+            }
+            if (creep.memory.role == 'harvesterToContainer') {
+                roleHarvesterToContainer.run(creep);
+            }
+            if (creep.memory.role == 'claimer') {
+                //roomClaim.run(creep);
+                //creepAttack.run(creep);
+            }
         }
 
         
