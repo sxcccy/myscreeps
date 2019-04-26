@@ -98,7 +98,7 @@ var roomE5S39 = {
             if (creep.room.name == 'E5S29') {
                 
                 if (creep.memory.role == 'E5S29harvester') {
-                    creep.pos.createConstructionSite(STRUCTURE_ROAD);
+                    //creep.pos.createConstructionSite(STRUCTURE_ROAD);
                     if (creep.carry.energy < creep.carryCapacity) {
                         rechargeenergy(creep);
                     }
