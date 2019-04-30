@@ -10,11 +10,12 @@ Game.rooms.E5S29.createConstructionSite(10, 47, STRUCTURE_TOWER);
 Game.rooms.E6S29.createConstructionSite(10, 47, STRUCTURE_EXTENSION);
 Game.rooms.E6S29.createConstructionSite(10, 47, STRUCTURE_CONTROLLER);
 Game.rooms.E6S29.createConstructionSite(10, 47, STRUCTURE_STORAGE);
-
+Game.rooms.E6S29.createConstructionSite(10, 47, STRUCTURE_EXTRACTOR);
 STRUCTURE_TOWER
 STRUCTURE_LINK
 Game.rooms.E6S29.createConstructionSite(10, 47, STRUCTURE_LINK);
 Game.spawns['Main_Base'].spawnCreep([CLAIM, MOVE, MOVE], 'claimer1', { memory: { role: 'claimer' } });
+Game.spawns['Spawn1'].spawnCreep([CARRY, MOVE, MOVE], 'claimer1', { memory: { role: 'claimer' } });
 Game.spawns['Main_Base'].spawnCreep([MOVE, MOVE, ATTACK, ATTACK, MOVE], 'claimer1', { memory: { role: 'claimer' } });
 
 Game.spawns['Main_Base'].spawnCreep([TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, ATTACK,  ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, ATTACK, MOVE], 'claimer1', { memory: { role: 'upgrader' } });

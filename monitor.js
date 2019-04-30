@@ -14,13 +14,14 @@ var monitor = {
         var repairer = _.filter(Game.creeps, (creep) => creep.memory.role == 'repairer');
         var upgrader = _.filter(Game.creeps, (creep) => creep.memory.role == 'upgrader');
 
-        console.log('current energy:', sum_energy + '/' + sum_energyCapacity,
-            ' harvester:', harvester.length,
-            ' harvesterBIG:', harvesterBIG.length,
-            ' harvesterToContainer:', harvesterToContainer.length,
-            ' builder:', builder.length,
-            ' repairer:', repairer.length,
-            ' upgrader:', upgrader.length,
+
+        console.log('E6S29:', sum_energy + '/' + sum_energyCapacity,
+            'H'+harvester.length,
+            'HB'+harvesterBIG.length,
+            'HT'+harvesterToContainer.length,
+            'B'+builder.length,
+            'R'+repairer.length,
+            'U'+upgrader.length,
 
         );
 

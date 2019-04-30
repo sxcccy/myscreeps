@@ -9,7 +9,7 @@ var subCreateCreeps = {
         var num_branchOfWork = _.filter(Game.creeps, (creep) => creep.memory.role == branchOfWork);
         //console.log('current energy:', sum_energy + '/' + sum_energyCapacity);
         //console.log(branchOfWork + '=' + num_branchOfWork.length + '/' + num);
-        var fenshuling=1000
+        var fenshuling=1100
         if (sum_energy < fenshuling && branchOfWork == 'harvester') {
             if (num_branchOfWork.length < num) {
                 console.log('Spawning new ' + branchOfWork, name);
@@ -18,14 +18,20 @@ var subCreateCreeps = {
             }
         }
         if (sum_energy >= fenshuling) {
-            var STD_harvesterBIG = [WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
-            var STD_builder = [WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE];
-            //var STD_builder = [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
+            var STD_harvesterBIG = [WORK,
+                CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,
+                MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
+            var STD_builder = [WORK, WORK, WORK, WORK, WORK,
+                CARRY, CARRY, CARRY, CARRY,
+                MOVE, MOVE, MOVE, MOVE];
             //var STD_upgrader = [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, MOVE];
-            var STD_upgrader = [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
-            var STD_repairer = [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
-            //var STD_repairer = [WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE];
-            var STD_harvesterToContainer = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE];
+            var STD_upgrader = [WORK, WORK, WORK, WORK, WORK, WORK,
+                CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,
+                MOVE, MOVE];
+            var STD_repairer = [WORK,
+                CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,
+                MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
+            var STD_harvesterToContainer = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE];
 
             //
             if (branchOfWork == 'harvesterBIG') { var STD = STD_harvesterBIG; }

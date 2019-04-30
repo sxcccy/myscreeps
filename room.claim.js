@@ -11,7 +11,6 @@ var roomClaim = {
             const exitDir = Game.map.findExit(creep.room, anotherRoomName);
             const exit = creep.pos.findClosestByRange(exitDir);
             creep.moveTo(exit, { reusePath: 50 });
-
             //creep.moveTo(new RoomPosition(48, 30, anotherRoomName), { reusePath: 50 });
 
         }

@@ -13,6 +13,7 @@ var roadBuild = require('road.build');
 var Test = require('test');
 var TestCreep = require('test.creep');
 var roomE5S29 = require('room.e5s29');
+var Link = require('link');
 
 module.exports.loop = function ()
 {
@@ -24,6 +25,7 @@ module.exports.loop = function ()
             delete Memory.creeps[name];
             console.log('Clearing non-existing creep memory:', name);
         }
+        
     }
 
     if (Game.spawns['Main_Base'].spawning)
@@ -41,12 +43,16 @@ module.exports.loop = function ()
     defense.run();
     roadBuild.run();
     roomE5S29.run();
-    Test.run() 
+    Link.run();
+    Test.run();
+    
 
     for (var name in Game.creeps)
     {
+
         var creep = Game.creeps[name];
-        if (creep.room.name = 'E6S29') {
+
+        
             if (creep.memory.role == 'harvester' || creep.memory.role == 'harvesterBIG') {
                 roleHarvester.run(creep);
             }
@@ -59,8 +65,8 @@ module.exports.loop = function ()
                 //roomClaim.run(creep);
             }
             if (creep.memory.role == 'repairer') {
-                roleRepairer.run(creep);
-                //creepRepair.run(creep);
+                //TestCreep.run(creep);;
+                creepRepair.run(creep);
             }
             if (creep.memory.role == 'harvesterToContainer') {
                 roleHarvesterToContainer.run(creep);
@@ -69,7 +75,7 @@ module.exports.loop = function ()
                 //roomClaim.run(creep);
                 //creepAttack.run(creep);
             }
-        }
+        
 
         
         //TestCreep.run(creep);

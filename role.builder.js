@@ -23,20 +23,25 @@ var roleBuilder = {
                 }
             }
             //空闲时修理
+            //else {
+            //    var targets = creep.room.find(FIND_STRUCTURES, {
+            //        filter: (structure) => {
+            //            return (structure.structureType == STRUCTURE_WALL)
+            //        }
+            //    });
+            //    if (targets.length) {
+            //        var num_hits = 0;
+            //        for (var name in targets) { num_hits += targets[name].hits; }
+            //        var avg_hits = Math.ceil(num_hits / targets.length);
+            //        //console.log(avg_hits / targets[0].hitsMax);
+            //        if (avg_hits / targets[0].hitsMax < 1) {
+            //            subRepair.run(creep, STRUCTURE_WALL);
+            //        }
+            //    }
+            //}
             else {
-                var targets = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_WALL)
-                    }
-                });
-                if (targets.length) {
-                    var num_hits = 0;
-                    for (var name in targets) { num_hits += targets[name].hits; }
-                    var avg_hits = Math.ceil(num_hits / targets.length);
-                    //console.log(avg_hits / targets[0].hitsMax);
-                    if (avg_hits / targets[0].hitsMax < 1) {
-                        subRepair.run(creep, STRUCTURE_WALL);
-                    }
+                if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                    creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } }, { reusePath: 50 });
                 }
             }
         }
