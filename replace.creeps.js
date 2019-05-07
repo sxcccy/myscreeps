@@ -4,7 +4,7 @@ var replaceCreeps = {
     
     run: function () {
 
-        var Num_Harvester = 1; var Num_Upgrader = 1; var Num_Builder = 1; var Num_Repairer = 1;
+        var Num_Harvester = 1; var Num_Upgrader = 1; var Num_Builder = 0; var Num_Repairer = 1;
 
         
         subCreateCreeps.run(Num_Builder, 'builder', 'builder' + Game.time);

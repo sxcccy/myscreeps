@@ -26,7 +26,7 @@ var subRepair = {
                     //空闲UPgrade
                 else {
                     if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                        creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } }, { reusePath: 50 });
+                        creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                         
                     }
 
@@ -39,7 +39,7 @@ var subRepair = {
                     
                     if (repaire_targets.hits < repaire_targets.hitsMax) {
                         if (creep.repair(repaire_targets) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(repaire_targets, { visualizePathStyle: { stroke: '#ffffff' } }, { reusePath: 50 });
+                            creep.moveTo(repaire_targets, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                         }
                     }
                     else {
@@ -56,15 +56,7 @@ var subRepair = {
 
         else {
             creep.memory.repairing = false;
-            var storage = creep.room.find(FIND_STRUCTURES, { filter: (structure) => { return structure.structureType == STRUCTURE_STORAGE; } });
-            if (storage.length && storage[0].store[RESOURCE_ENERGY] >= 150) {
-                if (creep.withdraw(storage[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(storage[0], { visualizePathStyle: { stroke: '#ffaa00' } }, { reusePath: 50 });
-                }
-            }
-            else {
-                rechargeEnergy.run(creep);
-            }
+            rechargeEnergy.run(creep);
         }
     }
 };

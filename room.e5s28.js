@@ -13,87 +13,87 @@ var creepRepair = require('creep.repair');
 var TestCreep = require('test.creep');
 
 
-var roomE5S29 = {
+var roomE5S28 = {
 
     run: function () {
 
-        if (Game.spawns['Spawn1'].spawning) {
-            var spawningCreep = Game.creeps[Game.spawns['Spawn1'].spawning.name];
-            Game.spawns['Spawn1'].room.visual.text(
+        if (Game.spawns['E5S28_Spawn1'].spawning) {
+            var spawningCreep = Game.creeps[Game.spawns['E5S28_Spawn1'].spawning.name];
+            Game.spawns['E5S28_Spawn1'].room.visual.text(
                 '🛠️' + spawningCreep.memory.role,
-                Game.spawns['Spawn1'].pos.x + 1,
-                Game.spawns['Spawn1'].pos.y,
+                Game.spawns['E5S28_Spawn1'].pos.x + 1,
+                Game.spawns['E5S28_Spawn1'].pos.y,
                 { align: 'left', opacity: 0.8 });
         }
 
-        var sum_energy = Game.rooms.E5S29.energyAvailable;
-        var sum_energyCapacity = Game.rooms.E5S29.energyCapacityAvailable;
+        var sum_energy = Game.rooms.E5S28.energyAvailable;
+        var sum_energyCapacity = Game.rooms.E5S28.energyCapacityAvailable;
         
        
-        var TH = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S29harvester');
-        var THB = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S29harvesterBIG');
-        var TU = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S29upgrader');
-        var TB = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S29builder');
-        var TR = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S29repairer');
-        var THT = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S29harvesterToContainer');
-        console.log('E5S29:', sum_energy+'/'+sum_energyCapacity,
+        var TH = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S28harvester');
+        var THB = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S28harvesterBIG');
+        var TU = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S28upgrader');
+        var TB = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S28builder');
+        var TR = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S28repairer');
+        var THT = _.filter(Game.creeps, (creep) => creep.memory.role == 'E5S28harvesterToContainer');
+        console.log('E5S28:', sum_energy+'/'+sum_energyCapacity,
             'H' + TH.length,
             'HB' + THB.length,
             'HT' + THT.length,
             'B' + TB.length,
             'R' + TR.length,
             'U' + TU.length)
-        var Num_Harvester = 4; var Num_HarvesterBIG = 1; var Num_Upgrader = 0; var Num_Builder = 1; var Num_Repairer = 1; Num_HT = 1;
-        if (sum_energy < 900) {
+        var Num_Harvester = 3; var Num_HarvesterBIG = 2; var Num_Upgrader = 1; var Num_Builder = 2; var Num_Repairer = 1; Num_HT = 1;
+        if (sum_energy < 500) {
 
             //if (TW.length < Num_Warior) {
-            //    Game.spawns['Spawn1'].spawnCreep([TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, RANGED_ATTACK, MOVE], 'E5S29warior' + Game.time, { memory: { role: 'E5S29warior' } });
+            //    Game.spawns['E5S28_Spawn1'].spawnCreep([TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, RANGED_ATTACK, MOVE], 'E5S28warior' + Game.time, { memory: { role: 'E5S28warior' } });
             //    console.log('Spawning new -----');
             //}
             //if (TB.length < Num_Builder) {
-            //    Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], 'E5S29builder' + Game.time, { memory: { role: 'E5S29builder' } });
+            //    Game.spawns['E5S28_Spawn1'].spawnCreep([WORK, CARRY, MOVE], 'E5S28builder' + Game.time, { memory: { role: 'E5S28builder' } });
             //    console.log('Spawning new -----');
             //}
             //if (TR.length < Num_Repairer) {
-            //    Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], 'E5S29repairer' + Game.time, { memory: { role: 'E5S29repairer' } });
+            //    Game.spawns['E5S28_Spawn1'].spawnCreep([WORK, CARRY, MOVE], 'E5S28repairer' + Game.time, { memory: { role: 'E5S28repairer' } });
             //    console.log('Spawning new -----');
             //}
             //if (TU.length < Num_Upgrader) {
-            //    Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], 'E5S29upgrader' + Game.time, { memory: { role: 'E5S29upgrader' } });
+            //    Game.spawns['E5S28_Spawn1'].spawnCreep([WORK, CARRY, MOVE], 'E5S28upgrader' + Game.time, { memory: { role: 'E5S28upgrader' } });
             //    console.log('Spawning new -----');
             //}
             if (TH.length < Num_Harvester && THB.length == 0) {
-                Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], 'E5S29harvester' + Game.time, { memory: { role: 'E5S29harvester' } });
+                Game.spawns['E5S28_Spawn1'].spawnCreep([WORK, CARRY, MOVE], 'E5S28harvester' + Game.time, { memory: { role: 'E5S28harvester' } });
                 console.log('Spawning new -----');
             }
         }
         else {
 
             if (TB.length < Num_Builder) {
-                Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE], 'E5S29builder' + Game.time, { memory: { role: 'E5S29builder' } });
+                Game.spawns['E5S28_Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], 'E5S28builder' + Game.time, { memory: { role: 'E5S28builder' } });
                 console.log('Spawning new -----');
             }
             if (TR.length < Num_Repairer) {
-                Game.spawns['Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], 'E5S29repairer' + Game.time, { memory: { role: 'E5S29repairer' } });
+                Game.spawns['E5S28_Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], 'E5S28repairer' + Game.time, { memory: { role: 'E5S28repairer' } });
                 console.log('Spawning new -----');
             }
             if (THB.length < Num_HarvesterBIG) {
-                Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE], 'E5S29harvesterBIG' + Game.time, { memory: { role: 'E5S29harvesterBIG' } });
+                Game.spawns['E5S28_Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], 'E5S28harvesterBIG' + Game.time, { memory: { role: 'E5S28harvesterBIG' } });
                 console.log('Spawning new -----');
             }
             if (TU.length < Num_Upgrader) {
-                Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, CARRY, MOVE, MOVE], 'E5S29upgrader' + Game.time, { memory: { role: 'E5S29upgrader' } });
+                Game.spawns['E5S28_Spawn1'].spawnCreep([WORK, WORK, CARRY, CARRY, MOVE, MOVE], 'E5S28upgrader' + Game.time, { memory: { role: 'E5S28upgrader' } });
                 console.log('Spawning new -----');
             }
             if (THT.length < Num_HT) {
-                var container = Game.spawns['Spawn1'].room.find(FIND_STRUCTURES, {
+                var container = Game.spawns['E5S28_Spawn1'].room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_CONTAINER)
                     }
                 });
                 if (container.length) {
                     for (var name in container) {
-                        aaa = Game.spawns['Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, WORK, WORK, WORK, CARRY, MOVE, MOVE, MOVE], container[name].id, { memory: { role: 'E5S29harvesterToContainer' } });
+                        aaa = Game.spawns['E5S28_Spawn1'].spawnCreep([WORK, WORK, WORK, WORK, CARRY, MOVE], container[name].id, { memory: { role: 'E5S28harvesterToContainer' } });
                         console.log(aaa, container[name].id, 'Spawning new harvesterToContainer');
                     }
                 }
@@ -103,17 +103,15 @@ var roomE5S29 = {
 
         for (var name in Game.creeps) {
             var creep = Game.creeps[name];
-            if (creep.memory.role == 'E5S29harvester' || creep.memory.role == 'E5S29harvesterBIG') {
+            if (creep.memory.role == 'E5S28harvester' || creep.memory.role == 'E5S28harvesterBIG') {
                 //creep.pos.createConstructionSite(STRUCTURE_ROAD);
-
                 var storage = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
                         return (structure.structureType == STRUCTURE_STORAGE)
                     }
                 });
                 var links = storage[0].pos.findInRange(FIND_MY_STRUCTURES, 2, { filter: { structureType: STRUCTURE_LINK } });
-                    
-                if (links.length && links[0].energy > 400) {
+                if (storage.length && links.length && links[0].energy > 400) {
                     if (creep.withdraw(links[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
                         creep.moveTo(links[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                     }
@@ -167,8 +165,12 @@ var roomE5S29 = {
                         }
                     }
                 }
+                
+                
+                    
+                
             }   
-            if (creep.memory.role == 'E5S29upgrader') {
+            if (creep.memory.role == 'E5S28upgrader') {
                 //creep.pos.createConstructionSite(STRUCTURE_ROAD);
                 var storage = creep.room.find(FIND_STRUCTURES, {
                     filter: (structure) => {
@@ -176,40 +178,36 @@ var roomE5S29 = {
                     }
                 });
                 var links = storage[0].pos.findInRange(FIND_MY_STRUCTURES, 2, { filter: { structureType: STRUCTURE_LINK } });
-                //console.log(links);
-                if (links.length) {
-                    if (links[0].energy > 100) {
-                        if (creep.withdraw(links[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(links[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
+                if (storage.length && links.length && links[0].energy > 400 ) {
+                    if (creep.withdraw(links[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                        creep.moveTo(links[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
+                    }
+                    if (creep.carry.energy == creep.carryCapacity) {
+                        if (creep.transfer(storage[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(storage[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                         }
-                        if (creep.carry.energy == creep.carryCapacity) {
-                            if (creep.transfer(storage[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(storage[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
-                            }
+                    }                   
+                }
+                else {
+                    if (creep.memory.upgrading && creep.carry.energy == 0) {
+                        creep.memory.upgrading = false;
+                        creep.say('🔄 harvest');
+                    }
+                    if (!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
+                        creep.memory.upgrading = true;
+                        creep.say('⚡ upgrade');
+                    }
+                    if (creep.memory.upgrading) {
+                        if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                         }
                     }
-                    //else {
-                    //    if (creep.memory.upgrading && creep.carry.energy == 0) {
-                    //        creep.memory.upgrading = false;
-                    //        creep.say('🔄 harvest');
-                    //    }
-                    //    if (!creep.memory.upgrading && creep.carry.energy == creep.carryCapacity) {
-                    //        creep.memory.upgrading = true;
-                    //        creep.say('⚡ upgrade');
-                    //    }
-                    //    if (creep.memory.upgrading) {
-                    //        if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                    //            creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } }, { reusePath: 50 });
-                    //        }
-                    //    }
-                    //    else {
-                    //        rechargeenergy(creep);
-                    //    }                           
-                    //}
+                    else {
+                        rechargeenergy(creep);
+                    }                           
                 }
-
             }
-            if (creep.memory.role == 'E5S29builder') {
+            if (creep.memory.role == 'E5S28builder') {
                 if (!creep.memory.building) {
                     rechargeenergy(creep);
                 }
@@ -226,9 +224,10 @@ var roomE5S29 = {
                 if (creep.memory.building) {
                     var targets = creep.room.find(FIND_CONSTRUCTION_SITES);
 
+                    const ClosestT = creep.pos.findClosestByRange(targets);
                     if (targets.length) {
-                        if (creep.build(targets[0]) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(targets[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
+                        if (creep.build(ClosestT) == ERR_NOT_IN_RANGE) {
+                            creep.moveTo(ClosestT, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                         }
                     }
                     else {
@@ -253,7 +252,7 @@ var roomE5S29 = {
                     }
                 }
             }
-            if (creep.memory.role == 'E5S29repairer') {
+            if (creep.memory.role == 'E5S28repairer') {
 
                 if (creep.memory.repairing && creep.carry.energy == 0) {
                     creep.memory.canRepair = false;
@@ -311,7 +310,7 @@ var roomE5S29 = {
 
 
             }
-            if (creep.memory.role == 'E5S29harvesterToContainer') {
+            if (creep.memory.role == 'E5S28harvesterToContainer') {
                 roleHarvesterToContainer.run(creep);
             }
             if (creep.memory.role == 'claimer') {
@@ -332,44 +331,22 @@ function sortObj(array, key) {
 }
 function rechargeenergy(creep) {
 
-    var storage = creep.room.find(FIND_STRUCTURES, { filter: (structure) => { return structure.structureType == STRUCTURE_STORAGE; } });
-    if (storage && storage[0].store[RESOURCE_ENERGY] >= 150) {
-        if (creep.withdraw(storage[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-            creep.moveTo(storage[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
+    var container = creep.room.find(FIND_STRUCTURES, {
+        filter: (structure) => {
+            return (structure.structureType == STRUCTURE_CONTAINER)
+        }
+    });
+    if (container.length && container[0].store[RESOURCE_ENERGY] >= 100) {
+        if (creep.withdraw(container[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(container[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
         }
     }
     else {
-        var links = storage[0].pos.findInRange(FIND_MY_STRUCTURES, 2, { filter: { structureType: STRUCTURE_LINK } });
-            
-        if (links.length && links[0].energy > 400) {
-            if (creep.withdraw(links[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(links[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
-            }
-            if (creep.transfer(storage[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                creep.moveTo(storage[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
-            }
+        var sources = creep.room.find(FIND_SOURCES);
+        if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
+            creep.moveTo(sources[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
         }
-        else {
-            var container = creep.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_CONTAINER)
-                }
-            });
-            if (container.length && container[0].store[RESOURCE_ENERGY] >= 100) {
-                if (creep.withdraw(container[0], RESOURCE_ENERGY) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(container[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
-                }
-            }
-            else {
-                var sources = creep.room.find(FIND_SOURCES);
-                if (creep.harvest(sources[0]) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(sources[0], { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
-                }
-            }
-        }
-            
     }
-    
 }
-module.exports = roomE5S29;
+module.exports = roomE5S28;
 

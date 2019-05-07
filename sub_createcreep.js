@@ -21,11 +21,11 @@ var subCreateCreeps = {
             var STD_harvesterBIG = [WORK,
                 CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,
                 MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE, MOVE];
-            var STD_builder = [WORK, WORK, WORK, WORK, WORK,
-                CARRY, CARRY, CARRY, CARRY,
+            var STD_builder = [WORK, WORK, WORK, WORK, WORK, WORK, WORK,
+                CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,
                 MOVE, MOVE, MOVE, MOVE];
             //var STD_upgrader = [TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, TOUGH, MOVE, MOVE, MOVE, MOVE, MOVE, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, RANGED_ATTACK, MOVE];
-            var STD_upgrader = [WORK, WORK, WORK, WORK, WORK, WORK,
+            var STD_upgrader = [WORK, WORK, WORK, WORK, WORK, WORK, WORK, WORK,
                 CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY, CARRY,
                 MOVE, MOVE];
             var STD_repairer = [WORK,

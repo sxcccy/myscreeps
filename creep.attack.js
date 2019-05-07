@@ -4,12 +4,12 @@ var creepAttack = {
 
 
 
-        var anotherRoomName = 'E5S29';
+        var anotherRoomName = 'E6S29';
         //console.log(creep.room.name != anotherRoomName);
         if (creep.room.name != anotherRoomName) {
             const exitDir = Game.map.findExit(creep.room, anotherRoomName);
             const exit = creep.pos.findClosestByRange(exitDir);
-            creep.moveTo(exit, { reusePath: 50 });
+            creep.moveTo(exit, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
 
             //creep.moveTo(new RoomPosition(46, 30, anotherRoomName), { reusePath: 50 });
 
@@ -26,11 +26,11 @@ var creepAttack = {
                     creep.rangedAttack(targets[0]);
                 }
                 else {
-                    creep.moveTo(closestHostile, { reusePath: 50 });
+                    creep.moveTo(closestHostile, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                 }
                 
                 if (creep.attack(closestHostile) == ERR_NOT_IN_RANGE) {
-                    creep.moveTo(closestHostile, { reusePath: 50 });
+                    creep.moveTo(closestHostile, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                     creep.attack(closestHostile);
                     const targets = creep.pos.findInRange(FIND_HOSTILE_CREEPS, 3);
                     if (targets.length > 0) {

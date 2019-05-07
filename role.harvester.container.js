@@ -2,7 +2,7 @@ var roleHarvesterToContainer = {
 
     run: function (creep) {
         //console.log(creep.name);
-        creep.moveTo(Game.getObjectById(creep.name).pos, { visualizePathStyle: { stroke: '#ffaa00' } }, { reusePath: 50 });
+        creep.moveTo(Game.getObjectById(creep.name).pos, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
         var links = creep.pos.findInRange(FIND_MY_STRUCTURES, 1, { filter: { structureType: STRUCTURE_LINK } });
         if (creep.pos.x == Game.getObjectById(creep.name).pos.x && creep.pos.y == Game.getObjectById(creep.name).pos.y) {
             if (links.length) {

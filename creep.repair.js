@@ -11,7 +11,7 @@ var creepRepair = {
         if (creep.room.name != anotherRoomName) {
             const exitDir = Game.map.findExit(creep.room, anotherRoomName);
             const exit = creep.pos.findClosestByRange(exitDir);
-            creep.moveTo(exit, { reusePath: 50 });
+            creep.moveTo(exit, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
 
             
 
@@ -51,7 +51,7 @@ var creepRepair = {
                     //空闲UPgrade
                     else {
                         if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
-                            creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' } }, { reusePath: 50 });
+                            creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
 
                         }
 
@@ -64,7 +64,7 @@ var creepRepair = {
 
                         if (repaire_targets.hits < repaire_targets.hitsMax) {
                             if (creep.repair(repaire_targets) == ERR_NOT_IN_RANGE) {
-                                creep.moveTo(repaire_targets, { visualizePathStyle: { stroke: '#DC143C' } }, { reusePath: 50 });
+                                creep.moveTo(repaire_targets, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                             }
                         }
                         else {

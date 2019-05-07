@@ -12,4 +12,4 @@ Always try to control as many rooms as your GCL allows. It will allow your colon
 Spawn extensions do not have to be placed near spawns, their range is the whole room.
 A creep can execute some commands simultaneously in one tick, for example move+build+dropEnergy.
 To output an object content into the console, use JSON.stringify
-
+ Build roads to save on MOVE body parts of your creeps.
