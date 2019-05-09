@@ -1,0 +1,64 @@
+{
+
+    "globals": {
+
+        "$": false,
+
+        "window": true,
+
+        "document": true
+
+    },
+
+    "strict": true,
+
+    "curly": true,
+
+    "eqeqeq": true,
+
+    "noarg": true,
+
+    "noempty": true,
+
+    "quotmark": "single",
+
+    "undef": true,
+
+    "unused": true,
+
+    "esversion":6,
+
+    "browserify":true,
+    
+    "dojo":true,
+
+    "jasmine":true,
+
+    "jquery":true,
+
+    "mocha":true,
+
+    "mootools":true,
+
+    "node":true,
+
+    "nonstandard":true,
+
+    "phantom":true,
+
+    "prototypejs":true,
+
+    "rhino":true,
+
+    "shelljs":true,
+
+    "typed":true,
+
+    "worker":true,
+
+    "wsh":true,
+
+    "yui":true
+
+
+}

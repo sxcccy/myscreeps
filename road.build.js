@@ -1,21 +1,25 @@
+/* jshint -W117  */ /* jshint -W098  */ /* jshint -W083  */
 var roadBuild = {
 
     /** @param {Creep} creep **/
     run: function () {
+        'use strict';
 
-        
+
 
 
 
 
     }
 };
+
 function roadsite(aaa, bbb) {
+    'use strict';
     var ret = PathFinder.search(aaa, bbb);
     for (var p in ret.path) {
         ret.path[p].createConstructionSite(STRUCTURE_ROAD);
     }
-    
+
 }
 module.exports = roadBuild;
 /*

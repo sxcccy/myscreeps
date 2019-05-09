@@ -1,23 +1,23 @@
+/* jshint -W117  */ /* jshint -W098  */ /* jshint -W083  */
 var subRepair = require('sub_repair');
 
 var roleRepair = {
 
     /** @param {Creep} creep **/
     run: function (creep) {
+        'use strict';
         //creep.pos.createConstructionSite(STRUCTURE_ROAD);
         
-        if (creep.memory.repairing && creep.carry.energy == 0) {
+        if (creep.memory.repairing && creep.carry.energy === 0) {
             creep.memory.canRepair = false;
             creep.say('🔄 harvest');
         }
-        if (!creep.memory.repairing && creep.carry.energy == creep.carryCapacity) {
+        if (!creep.memory.repairing && creep.carry.energy === creep.carryCapacity) {
             creep.memory.canRepair = true;
             creep.say('🔨 repairing');
         }
         var targets = creep.room.find(FIND_STRUCTURES, {
-            filter: (structure) => {
-                return (structure.structureType == STRUCTURE_CONTAINER && structure.hits < structure.hitsMax*0.8)
-            }
+            filter: (structure) => (structure.structureType === STRUCTURE_CONTAINER && structure.hits < structure.hitsMax * 0.8)
         });
 
         if (targets.length) {   
@@ -25,9 +25,7 @@ var roleRepair = {
         }
         else {
             var road = creep.room.find(FIND_STRUCTURES, {
-                filter: (structure) => {
-                    return (structure.structureType == STRUCTURE_ROAD && structure.hits < structure.hitsMax*0.5)
-                }
+                filter: (structure) => (structure.structureType === STRUCTURE_ROAD && structure.hits < structure.hitsMax * 0.5)
             });
 
             if (road.length) {
@@ -35,15 +33,13 @@ var roleRepair = {
             }
             else {
                 var rampart = creep.room.find(FIND_STRUCTURES, {
-                    filter: (structure) => {
-                        return (structure.structureType == STRUCTURE_RAMPART && structure.hits < structure.hitsMax)
-                    }
+                    filter: (structure) => (structure.structureType === STRUCTURE_RAMPART && structure.hits < structure.hitsMax)
                 });
                 if (rampart.length) {
                         subRepair.run(creep, STRUCTURE_RAMPART);
                 }
                 else {
-                    if (creep.upgradeController(creep.room.controller) == ERR_NOT_IN_RANGE) {
+                    if (creep.upgradeController(creep.room.controller) === ERR_NOT_IN_RANGE) {
                         creep.moveTo(creep.room.controller, { visualizePathStyle: { stroke: '#ffffff' }, reusePath: 50 });
                     }
                 }

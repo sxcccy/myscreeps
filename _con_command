@@ -1,5 +1,5 @@
 Game.rooms.E6S29.createConstructionSite(10, 47, STRUCTURE_RAMPART);
-
+/* jshint -W117  */ /* jshint -W098  */ /* jshint -W083  */
 Game.rooms.E6S29.createConstructionSite(10, 47, STRUCTURE_WALL);
 Game.rooms.E5S29.createConstructionSite(10, 47, STRUCTURE_WALL);
 Game.rooms.E5S29.createConstructionSite(10, 47, STRUCTURE_SPAWN);
